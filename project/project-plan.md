@@ -25,16 +25,17 @@ Dataset includes entire economic freedom dataset, including sub-indicators from 
 
 ### Datasource2: Educational level score 
 * Metadata URL: 
-    * https://pisadataexplorer.oecd.org/ide/idepisa/dataset.aspx
+    * [https://pisadataexplorer.oecd.org/ide/idepisa/dataset.aspx](https://pisadataexplorer.oecd.org/ide/idepisa/report.aspx?p=1-RMS-1-20183,20153,20123,20093,20063,20033,20003-PVREAD-TOTAL-IN2,IN3,AUS,AUT,BEL,CAN,CHL,COL,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LTU,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA-MN_MN-Y_J-0-0-37&Lang=1033)
 * Data URL:
     * link to download the dataset
-* Data Format: xlsx
+* Data Format: xls
 
 
-Subject, Age: Global Competence, 15 years
-Jurisdictions: Selected countries and jurisdictions, International Average (OECD), Canada, Chile, Colombia, Greece, Israel, Korea, Latvia, Lithuania, Slovak Republic, Spain, Albania, Brunei Darussalam, Chinese Taipei, Costa Rica, Croatia, Hong Kong (China), Indonesia, Kazakhstan, Malta, Morocco, Panama, Philippines, Russia, Serbia, Singapore, Thailand, Russian Federation: Moscow region, Russian Federation: Republic of Tatarstan, Spain: Andalusia, Spain: Aragon, Spain: Asturias, Spain: Balearic Islands, Spain: Basque Country, Spain: Canary Islands, Spain: Cantabria, Spain: Castile and Leon, Spain: Castile-La Mancha, Spain: Catalonia, Spain: Comunidad Valenciana, Spain: Extremadura, Spain: Galicia, Spain: La Rioja, Spain: Madrid, Spain: Murcia, Spain: Navarre, United Kingdom: Scotland
-Measures: PISA Reading Scale: Overall Reading, PISA Mathematics Scale: Overall Mathematics, PISA Science Scale: Overall Science, PISA Global Competence Scale
-Variables: All students, Student (Standardized) Gender, ISCED designation, ISCED level, ISCED orientation, Have you ever repeated a [grade]? At [ISCED 1], Have you ever repeated a [grade]? At [ISCED 2], Have you ever repeated a [grade]? At [ISCED 3], Grade Repetition, Number of school changes, How old were you when you started [ISCED 0]? Years, Highest Education of parents - alternate definition (ISCED), Index hs Education - alternate definition (ISCED)
+Subject, Age: Reading, Mathematics and Science, 15 years
+Jurisdictions: Selected countries and jurisdictions, International Average (OECD), Australia, Austria, Belgium, Canada, Chile, Colombia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Israel, Italy, Japan, Korea, Latvia, Lithuania, Luxembourg, Mexico, Netherlands, New Zealand, Norway, Poland, Portugal, Slovak Republic, Slovenia, Spain, Sweden, Switzerland, Turkey, United Kingdom, United States
+Measures: PISA Reading Scale: Overall Reading, PISA Mathematics Scale: Overall Mathematics, PISA Science Scale: Overall Science
+Variables: All students, Student (Standardized) Gender
+Years/Studies: 2018, 2015, 2012, 2009, 2006, 2003, 2000
 
 
 
