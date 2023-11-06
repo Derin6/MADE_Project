@@ -18,7 +18,7 @@ Is there a correlation between Education level and Economic Freedom and what fea
 * Metadata URL:
   * https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&page=dataset&min-year=2&max-year=0&filter=0&year=2021
 * Data URL:
-  * https://www.fraserinstitute.org/sites/all/modules/custom/ftw_maps_pages/files/efotw-2023-master-index-data-for-researchers-iso.xlsx
+  * https://github.com/Derin6/MADE_Project/blob/77927c42c204107353521835a03242dcc45f1f66/project/efotw-2023-master-index-data-for-researchers-iso.xlsx
 * Data Format: xlsx
 
 Dataset includes entire economic freedom dataset, including sub-indicators from 1975 to 2021 for every country that included into the research.
