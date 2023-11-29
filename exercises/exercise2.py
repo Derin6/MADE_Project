@@ -98,14 +98,20 @@ df2
 # In[105]:
 
 
-from sqlalchemy import create_engine
-
-database_url = 'sqlite:///trainstops.sqlite'
-engine = create_engine(database_url)
+import sqlite3
 
 
-tb_name = 'trainstops'
-df2.to_sql(tb_name, con=engine, if_exists='replace')
+db_file_path = 'trainstops.sqlite'
+conn = sqlite3.connect(db_file_path)
+
+cursor = conn.cursor()
+
+table_name = 'trainstops'
+df2.to_sql(table_name, con=conn, if_exists='replace', index=False)
+
+conn.commit()
+conn.close()
+
 
 
 
