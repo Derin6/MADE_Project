@@ -1,1 +1,1 @@
-python3 exercises/exercise2.py
+python3 exercise2.py
