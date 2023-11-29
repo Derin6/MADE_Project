@@ -1,120 +1,50 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[10]:
-
-
 import pandas as pd
-import requests
-
-
-# In[74]:
-
-
-data_url="https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
-
-
-# In[75]:
-
-
-df= pd.read_csv(data_url,sep=';')
-
-
-# In[76]:
-
-
-df
-
-
-# In[83]:
-
-
-df.drop("Status",axis=1,inplace= True)
-
-
-# In[64]:
-
-
-Verkehr_list=("FV", "RV", "nur DPN")
-df = df[df['Verkehr'].isin(Verkehr_list)]
-
-
-# In[65]:
-
-
-df.Laenge.replace(to_replace=",", value=".", inplace=True,regex=True)
-df.Breite.replace(to_replace=",", value=".", inplace=True,regex=True)
-
-
-# In[66]:
-
-
-df = df.astype({'Laenge':'float'})
-df = df.astype({'Breite':'float'})
-
-
-# In[67]:
-
-
-df
-
-
-# In[68]:
-
-
-df = df[(df.Laenge <= 90.0) & (df.Laenge >= -90.0)]
-
-
-# In[98]:
-
-
-df.dropna(inplace=True,)
-
-
-# In[99]:
-
-
-pattern = "^[A-Za-z]{2}:\d*:\d*(?::\d*)?$"
-
-
-# In[101]:
-
-
-df.IFOPT.str.match(pattern)
-
-
-# In[103]:
-
-
-df2=df[df.IFOPT.str.match(pattern)]
-
-
-# In[104]:
-
-
-df2
-
-
-# In[105]:
-
-
 import sqlite3
 
+# Step 1: Read data from the CSV file
+data_url = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
+df = pd.read_csv(data_url, sep=';')
 
-db_file_path = 'trainstops.sqlite'
-conn = sqlite3.connect(db_file_path)
+# Step 2: Drop the "Status" column
+df.drop("Status", axis=1, inplace=True)
 
+# Step 3: Filter rows with valid values
+Verkehr_list = ["FV", "RV", "nur DPN"]
+df = df[df['Verkehr'].isin(Verkehr_list)]
+
+df['Laenge'] = pd.to_numeric(df['Laenge'].str.replace(',', '.'), errors='coerce')
+df['Breite'] = pd.to_numeric(df['Breite'].str.replace(',', '.'), errors='coerce')
+
+df = df[(df['Laenge'] >= -90) & (df['Laenge'] <= 90)]
+df = df[(df['Breite'] >= -90) & (df['Breite'] <= 90)]
+
+pattern = r"^[A-Za-z]{2}:\d*:\d*(?::\d*)?$"
+df = df[df['IFOPT'].str.match(pattern, na=False)]
+
+# Step 4: Create SQLite database and insert data
+conn = sqlite3.connect('trainstops.sqlite')
 cursor = conn.cursor()
 
-table_name = 'trainstops'
-df2.to_sql(table_name, con=conn, if_exists='replace', index=False)
+# Define SQLite types for each column
+sqlite_types = {
+    'BFNr': 'INTEGER',
+    'DS100': 'TEXT',
+    'Name': 'TEXT',
+    'Typ': 'TEXT',
+    'Verkehr': 'TEXT',
+    'Land': 'TEXT',
+    'Laenge': 'FLOAT',
+    'Breite': 'FLOAT',
+    'IFOPT': 'TEXT',
+}
 
+# Create the "trainstops" table
+create_table_query = f"CREATE TABLE trainstops ({', '.join([f'{col} {sqlite_types[col]}' for col in df.columns])})"
+cursor.execute(create_table_query)
+
+# Insert data into the "trainstops" table
+df.to_sql('trainstops', conn, if_exists='replace', index=False)
+
+# Commit changes and close the connection
 conn.commit()
 conn.close()
-
-
-
-
-
-
-# In[ ]:
