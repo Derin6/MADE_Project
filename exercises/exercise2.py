@@ -99,13 +99,15 @@ df2
 
 
 from sqlalchemy import create_engine
-import pandas as pd
 
-trainstops = 'trainstops'
-df2.to_sql(trainstops, con=engine, if_exists='replace')
+database_url = 'sqlite:///trainstops.sqlite'
+engine = create_engine(database_url)
 
-with open('schema.sql', 'w') as file:
-    file.write(str(df2.to_sql(trainstops, con=engine, if_exists='replace')))
+
+tb_name = 'trainstops'
+df2.to_sql(tb_name, con=engine, if_exists='replace')
+
+
 
 
 
