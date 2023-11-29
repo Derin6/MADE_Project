@@ -17,6 +17,7 @@ df = df.astype({'Laenge':'float'})
 df = df.astype({'Breite':'float'})
 
 df = df[(df.Laenge <= 90.0) & (df.Laenge >= -90.0)]
+df.dropna(inplace=True)
 
 
 
