@@ -101,20 +101,12 @@ df2
 from sqlalchemy import create_engine
 import pandas as pd
 
-# Step 1: Create a SQLAlchemy Engine with a new SQLite database
-db_url = 'sqlite:///made_database.db'
-engine = create_engine(db_url)
-
-
-
-
-
-# In[106]:
-
-
-# Step 3: Insert DataFrame into the Database
 table_1 = 'table_1'
 df2.to_sql(table_1, con=engine, if_exists='replace')
+
+with open('schema.sql', 'w') as file:
+    file.write(str(df2.to_sql(table_1, con=engine, if_exists='replace')))
+
 
 
 # In[ ]:
