@@ -22,4 +22,5 @@ jobs:
       run: |
           chmod +x ./project/pipeline.sh
           ./project/pipeline.sh
-    
+      run: python ./project/Project_Work_4.py
+      
