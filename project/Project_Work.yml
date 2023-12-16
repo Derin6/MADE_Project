@@ -24,4 +24,4 @@ jobs:
         run: python -c "import sys; print(sys.version)"
       - name: Project CI
         run: |
-          python ./project/pipeline.sh
+          python ./project/ipeline.sh
