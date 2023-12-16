@@ -1,6 +1,9 @@
-name: Python package
+name: PRoject Work 5  CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -19,6 +22,6 @@ jobs:
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-      - name: project ci
+      - name: Project CI
         run: |
-         python ./MADE_Project/tree/main/project/pipeline.sh
+          python ./project/pipeline.sh
