@@ -12,7 +12,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        path: project # Specify the path to checkout as 'project'
+        path: ./project 
 
     - name: Set up Node
       uses: actions/setup-node@v3
@@ -25,5 +25,4 @@ jobs:
         python-version: 3.11
 
     - name: Run pipeline
-      run: |
-        ./project/pipeline.sh
+      run: ./project/pipeline.sh
