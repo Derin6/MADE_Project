@@ -26,6 +26,4 @@ jobs:
 
     - name: Run pipeline
       run: |
-        cd project # Change to the project directory
-        chmod +x pipeline.sh # Ensure pipeline.sh has execution permissions
         ./pipeline.sh
