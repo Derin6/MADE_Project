@@ -1,31 +1,33 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
-
-
-# In[2]:
+# In[45]:
 
 
 import pandas as pd
 import sqlite3
 import urllib.request
 import requests
+from io import BytesIO
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
-# In[3]:
+# In[46]:
 
 
 from pandas.testing import assert_frame_equal
 import example
 
 
-# In[4]:
+# In[52]:
 
 
 def extract(url):
     header = {
-  "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.75 Safari/537.36",
+  "User-Agent": 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0',
+        
   "X-Requested-With": "XMLHttpRequest"
 }
     r = requests.get(url, headers=header)
@@ -33,22 +35,24 @@ def extract(url):
     
 
 
-# In[5]:
+# In[53]:
 
 
 def read_excel_1(r):
-    df1=pd.read_excel(r.content, engine="openpyxl",skiprows=4,nrows=203-4)
+    content = r.content
+    df1=pd.read_excel(BytesIO(content), engine="openpyxl",skiprows=4,nrows=203-4)
     return df1
 
-def read_excel_2(url2):
-    df2=pd.read_excel(url2, engine="openpyxl",skiprows=2)
-    return df2
 
+def read_excel_2(r):
+    content = r.content
+    df2=pd.read_excel(BytesIO(content), engine="openpyxl",skiprows=2)
+    return df2
 
     
 
 
-# In[35]:
+# In[54]:
 
 
 def transform(df1,df2):
@@ -93,19 +97,20 @@ def transform(df1,df2):
     
 
 
-# In[36]:
+# In[55]:
 
 
 url1="https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx"
 url2="https://dataunodc.un.org/sites/dataunodc.un.org/files/data_cts_corruption_and_economic_crime.xlsx"
 
 r1 = extract(url1)
+r2 = extract(url2)
 df1 = read_excel_1(r1)
-df2 = read_excel_2(url2)
+df2 = read_excel_2(r2)
 df1,df2 = transform(df1,df2)
 
 
-# In[37]:
+# In[56]:
 
 
 def test_load():
@@ -124,7 +129,7 @@ def test_load():
     
 
 
-# In[38]:
+# In[57]:
 
 
 test_load()
