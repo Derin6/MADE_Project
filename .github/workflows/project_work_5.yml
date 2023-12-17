@@ -1,39 +1,41 @@
-name: Exercise Feedback
+name: Project Feedback
 
 on:
   push:
     branches:
-      - main
+    - main
     paths:
-      - 'project/**'
-  workflow_dispatch:
+    - project/**
 
 jobs:
-  project-feedback:
+  exercise-feedback:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          path: project # Specify the path to checkout as 'project'
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        path: main
 
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 'lts/*'
+    - name: Checkout exercise feedback
+      uses: actions/checkout@v3
+      with:
+        repository: Derin6/MADE_Project/tree/main/project
+        path: project
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
- jobs:
-  run_tests:
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: Run script file
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
+    - name: Install dependencies
+
+    # Install python
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    # Run exercise feedback
+    - name: Project pipeline
       run: |
-         chmod +x ./project/pipeline.sh
-         ./project/pipeline.shh
-      shell: bash
-
+        ./project/pipleline.sh
