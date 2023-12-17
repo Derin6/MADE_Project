@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[29]:
 
 
 import pandas as pd
@@ -18,7 +18,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 
 
 
-# In[2]:
+# In[30]:
 
 
 def extract(url):
@@ -32,7 +32,7 @@ def extract(url):
     
 
 
-# In[3]:
+# In[31]:
 
 
 def read_excel_1(r):
@@ -40,15 +40,16 @@ def read_excel_1(r):
     df1=pd.read_excel(BytesIO(content), engine="openpyxl",skiprows=4,nrows=203-4)
     return df1
 
-def read_excel_2(url2):
-    df2=pd.read_excel(url2, engine="openpyxl",skiprows=2)
-    return df2
 
+def read_excel_2(r):
+    content = r.content
+    df2=pd.read_excel(BytesIO(content), engine="openpyxl",skiprows=2)
+    return df2
 
     
 
 
-# In[4]:
+# In[32]:
 
 
 def transform(df1,df2):
@@ -93,33 +94,34 @@ def transform(df1,df2):
     
 
 
-# In[5]:
+# In[33]:
 
 
 url1="https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx"
 url2="https://dataunodc.un.org/sites/dataunodc.un.org/files/data_cts_corruption_and_economic_crime.xlsx"
 
 
-# In[6]:
+# In[34]:
 
 
 r1 = extract(url1)
+r2 = extract(url2)
 
 
-# In[7]:
+# In[35]:
 
 
 df1 = read_excel_1(r1)
-df2 = read_excel_2(url2)
+df2 = read_excel_2(r2)
 
 
-# In[8]:
+# In[36]:
 
 
 df1,df2 = transform(df1,df2)
 
 
-# In[9]:
+# In[37]:
 
 
 conn = sqlite3.connect('made_database.sqlite')
@@ -143,7 +145,20 @@ df2.to_sql('table2', conn, if_exists='replace', index=False)
 conn.commit()
 
 
+# In[38]:
 
+
+conn = sqlite3.connect('made_database.sqlite')
+cursor = conn.cursor()
+table1="table1"
+
+query = f'SELECT * FROM {table1}'
+result = pd.read_sql_query(query, conn)
+print(result)
+conn.close()
+
+
+# In[ ]:
 
 
 
