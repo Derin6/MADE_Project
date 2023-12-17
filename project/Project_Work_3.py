@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[29]:
+# In[58]:
 
 
 import pandas as pd
@@ -12,11 +12,37 @@ import example
 import requests
 from sqlalchemy import create_engine
 from io import BytesIO
+import ssl
+import urllib3
 
 
 
 
-# In[30]:
+# In[59]:
+
+
+class CustomHttpAdapter (requests.adapters.HTTPAdapter):
+    # "Transport adapter" that allows us to use custom ssl_context.
+
+    def __init__(self, ssl_context=None, **kwargs):
+        self.ssl_context = ssl_context
+        super().__init__(**kwargs)
+
+    def init_poolmanager(self, connections, maxsize, block=False):
+        self.poolmanager = urllib3.poolmanager.PoolManager(
+            num_pools=connections, maxsize=maxsize,
+            block=block, ssl_context=self.ssl_context)
+
+
+def get_legacy_session():
+    ctx = ssl.create_default_context(ssl.Purpose.SERVER_AUTH)
+    ctx.options |= 0x4  # OP_LEGACY_SERVER_CONNECT
+    session = requests.session()
+    session.mount('https://', CustomHttpAdapter(ctx))
+    return session
+
+
+# In[60]:
 
 
 def extract(url):
@@ -25,12 +51,12 @@ def extract(url):
         
   "X-Requested-With": "XMLHttpRequest"
 }
-    r = requests.get(url, headers=header,verify=False)
+    r = get_legacy_session().get(url, headers=header)
     return r
     
 
 
-# In[31]:
+# In[61]:
 
 
 def read_excel_1(r):
@@ -47,7 +73,7 @@ def read_excel_2(r):
     
 
 
-# In[32]:
+# In[62]:
 
 
 def transform(df1,df2):
@@ -92,34 +118,34 @@ def transform(df1,df2):
     
 
 
-# In[33]:
+# In[63]:
 
 
 url1="https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx"
 url2="https://dataunodc.un.org/sites/dataunodc.un.org/files/data_cts_corruption_and_economic_crime.xlsx"
 
 
-# In[34]:
+# In[64]:
 
 
 r1 = extract(url1)
 r2 = extract(url2)
 
 
-# In[35]:
+# In[65]:
 
 
 df1 = read_excel_1(r1)
 df2 = read_excel_2(r2)
 
 
-# In[36]:
+# In[66]:
 
 
 df1,df2 = transform(df1,df2)
 
 
-# In[37]:
+# In[67]:
 
 
 conn = sqlite3.connect('made_database.sqlite')
@@ -143,7 +169,7 @@ df2.to_sql('table2', conn, if_exists='replace', index=False)
 conn.commit()
 
 
-# In[38]:
+# In[68]:
 
 
 conn = sqlite3.connect('made_database.sqlite')
