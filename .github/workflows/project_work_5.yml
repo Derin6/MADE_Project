@@ -8,7 +8,13 @@ on:
 jobs:
   project-ci:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./project
+
     steps:
+
 
     - name: Set up Node
       uses: actions/setup-node@v3
@@ -22,4 +28,3 @@ jobs:
 
     - name: Project pipeline
       run: sh pipeline.sh
-      
