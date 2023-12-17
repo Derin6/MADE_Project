@@ -21,5 +21,5 @@ jobs:
         python-version: 3.11
 
     - name: Project pipeline
-      run: sh MADE_Project/project/pipeline.sh
-      working-directory: MADE_Project/project
+      run: sh pipeline.sh
+      
