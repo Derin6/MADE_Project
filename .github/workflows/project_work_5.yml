@@ -26,7 +26,6 @@ jobs:
           pip install example
           pip install openpyxl
           pip install --upgrade pandas openpyxl
-          pip install io
           pip install ssl
 
       - name: Run test.sh
