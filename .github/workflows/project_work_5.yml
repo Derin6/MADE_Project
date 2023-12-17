@@ -11,7 +11,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: /project/
+        working-directory: ./project/
 
     steps:
 
