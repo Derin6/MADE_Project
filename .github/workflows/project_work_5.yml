@@ -7,6 +7,9 @@ on:
     paths:
     - project/**
 
+workflow_dispatch:
+
+
 jobs:
   project-feedback:
     runs-on: ubuntu-latest
