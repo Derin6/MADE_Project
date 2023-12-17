@@ -20,4 +20,4 @@ jobs:
         python-version: 3.11
 
     - name: Project pipeline
-      run: project/test.sh
+      run: Derin6/MADE_Project/project/test.sh
