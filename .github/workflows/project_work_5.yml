@@ -21,4 +21,4 @@ jobs:
         python-version: 3.11
 
     - name: Project pipeline
-      run: python Project_Work_4.py
+      run: python project/Project_Work_4.py
