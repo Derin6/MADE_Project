@@ -23,6 +23,7 @@ jobs:
           pip install pandas
           pip install requests
           pip install sqlalchemy
+          pip install example
 
       - name: Run test.sh
         run: |
