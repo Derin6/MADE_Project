@@ -11,10 +11,15 @@ from pandas.testing import assert_frame_equal
 import example
 import requests
 from sqlalchemy import create_engine
+from io import BytesIO
+import ssl
+
+
 
 
 # In[3]:
 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def extract(url):
     header = {
@@ -30,7 +35,8 @@ def extract(url):
 
 
 def read_excel_1(r):
-    df1=pd.read_excel(r.content, engine="openpyxl",skiprows=4,nrows=203-4)
+    content = r.content
+    df1=pd.read_excel(BytesIO(content), engine="openpyxl",skiprows=4,nrows=203-4)
     return df1
 
 def read_excel_2(url2):
