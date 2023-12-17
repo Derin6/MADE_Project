@@ -1,23 +1,21 @@
-name: Exercise Feedback
+name: Prject Feedback
 
 on:
   push:
     branches:
     - main
     paths:
-    - project/**
-
- workflow_dispatch:
-
+    - 'project/**'
+  workflow_dispatch:
 
 jobs:
   project-feedback:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       with:
-        path: main
+        path: project # Specify the path to checkout as 'project'
 
     - name: Set up Node
       uses: actions/setup-node@v3
@@ -25,11 +23,12 @@ jobs:
         node-version: 'lts/*'
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2 # Updated to version 2
       with:
         python-version: 3.11
 
     - name: Run pipeline
       run: |
-        ./project/pipeline.sh
-    
+        cd project # Change to the project directory
+        chmod +x pipeline.sh # Ensure pipeline.sh has execution permissions
+        ./pipeline.sh
