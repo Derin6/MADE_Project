@@ -30,7 +30,7 @@ def extract(url):
         
   "X-Requested-With": "XMLHttpRequest"
 }
-    r = requests.get(url, headers=header)
+    r = requests.get(url, headers=header,verify=False)
     return r
     
 
