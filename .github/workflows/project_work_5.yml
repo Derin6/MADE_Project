@@ -4,8 +4,6 @@ on:
   push:
     branches:
     - main
-    paths:
-    - project/**
 
 jobs:
   exercise-feedback:
@@ -33,4 +31,4 @@ jobs:
     # Run exercise feedback
     - name: Project pipeline
       run: |
-        project/pipleline.sh
+        /project/pipleline.sh
