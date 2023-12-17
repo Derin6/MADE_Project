@@ -21,4 +21,4 @@ jobs:
 
     - name: Project pipeline
       run: test.sh
-      working-directory: project
+      working-directory: project/
