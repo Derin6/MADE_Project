@@ -14,10 +14,6 @@ jobs:
       with:
         path: main
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
 
     - name: Project pipeline
       run: sh test.sh
