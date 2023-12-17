@@ -6,7 +6,7 @@ on:
     - main
 
 jobs:
-  exercise-feedback:
+  project-ci:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -31,4 +31,4 @@ jobs:
     # Run exercise feedback
     - name: Project pipeline
       run: |
-        ./MADE_Project/project/pipeline.sh
+        /MADE_Project/project/pipeline.sh
