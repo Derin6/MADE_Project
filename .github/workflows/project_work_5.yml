@@ -33,4 +33,4 @@ jobs:
     # Run exercise feedback
     - name: Project pipeline
       run: |
-        ./project/pipleline.sh
+        project/pipleline.sh
