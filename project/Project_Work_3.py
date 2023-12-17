@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 
 import pandas as pd
@@ -14,12 +14,12 @@ from sqlalchemy import create_engine
 from io import BytesIO
 import ssl
 
-
-
-
-# In[3]:
-
 ssl._create_default_https_context = ssl._create_unverified_context
+
+
+
+# In[2]:
+
 
 def extract(url):
     header = {
@@ -27,11 +27,12 @@ def extract(url):
   "X-Requested-With": "XMLHttpRequest"
 }
     r = requests.get(url, headers=header)
+    
     return r
     
 
 
-# In[4]:
+# In[3]:
 
 
 def read_excel_1(r):
@@ -47,7 +48,7 @@ def read_excel_2(url2):
     
 
 
-# In[5]:
+# In[4]:
 
 
 def transform(df1,df2):
@@ -92,33 +93,33 @@ def transform(df1,df2):
     
 
 
-# In[6]:
+# In[5]:
 
 
 url1="https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx"
 url2="https://dataunodc.un.org/sites/dataunodc.un.org/files/data_cts_corruption_and_economic_crime.xlsx"
 
 
-# In[7]:
+# In[6]:
 
 
 r1 = extract(url1)
 
 
-# In[8]:
+# In[7]:
 
 
 df1 = read_excel_1(r1)
 df2 = read_excel_2(url2)
 
 
-# In[9]:
+# In[8]:
 
 
 df1,df2 = transform(df1,df2)
 
 
-# In[10]:
+# In[9]:
 
 
 conn = sqlite3.connect('made_database.sqlite')
@@ -142,20 +143,7 @@ df2.to_sql('table2', conn, if_exists='replace', index=False)
 conn.commit()
 
 
-# In[11]:
 
-
-conn = sqlite3.connect('made_database.sqlite')
-cursor = conn.cursor()
-table1="table1"
-
-query = f'SELECT * FROM {table1}'
-result = pd.read_sql_query(query, conn)
-print(result)
-conn.close()
-
-
-# In[ ]:
 
 
 
