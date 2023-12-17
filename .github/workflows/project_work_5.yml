@@ -26,11 +26,9 @@ jobs:
           pip install example
           pip install openpyxl
           pip install --upgrade pandas openpyxl
-          pip install cryptography==36.0.2
-          python -m pip install --upgrade certifi
+          pip install urllib3
 
       - name: Run test.sh
         run: |
-          chmod +x project/openssl.cnf
-          OPENSSL_CONF=./project/openssl.cnf python ./project/test.sh
-
+          chmod +x project/test.sh
+          ./project/test.sh
