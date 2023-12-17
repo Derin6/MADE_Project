@@ -1,4 +1,4 @@
-name: Project Feedback
+name: Test Workflow
 
 on:
   push:
@@ -6,14 +6,19 @@ on:
       - main
 
 jobs:
-  project-ci:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Set up Node
-      uses: actions/setup-node@v3
-      with:
-        path: main
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
 
-    - name: Project pipeline
-      run: sh test.sh
+      - name: Run test.sh
+        run: |
+          chmod +x project/test.sh
+          ./project/test.sh
