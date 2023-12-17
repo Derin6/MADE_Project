@@ -26,6 +26,7 @@ jobs:
           pip install example
           pip install openpyxl
           pip install --upgrade pandas openpyxl
+          pip install cryptography==36.0.2
 
       - name: Run test.sh
         run: |
