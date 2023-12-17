@@ -1,4 +1,4 @@
-name: Test Workflow
+e: Test Workflow
 
 on:
   push:
@@ -21,7 +21,6 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install pandas
-          pip install urllib.request
           pip install requests
           pip install sqlalchemy
 
