@@ -3,7 +3,7 @@ name: Project Feedback
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   project-ci:
@@ -15,14 +15,11 @@ jobs:
       with:
         node-version: 'lts/*'
 
-
-    # Install python
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
         python-version: 3.11
 
-    # Run project feedback
     - name: Project pipeline
-      run: sh pipeline.sh
-      working-directory: project
+      run: sh MADE_Project/project/pipeline.sh
+      working-directory: MADE_Project/project
