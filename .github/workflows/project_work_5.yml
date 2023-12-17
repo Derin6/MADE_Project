@@ -11,7 +11,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: https://github.com/Derin6/MADE_Project/tree/0a7f529fe156e718158a55502103f86a4187ed08/project
+        working-directory: ./project/
 
     steps:
 
