@@ -20,4 +20,4 @@ jobs:
         python-version: 3.11
 
     - name: Project pipeline
-      run: ./project/pipeline.sh
+      run: project/test.sh
