@@ -1,26 +1,35 @@
-name: Project Work 5
+name: Exercise Feedback
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+    - main
+    paths:
+    - project/**
 
 jobs:
-
-  build:
-
+  project-feedback:
     runs-on: ubuntu-latest
-  steps:
-    - uses: actions/checkout@v3
-    - name: Setup Python
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        path: main
+
+
+
+    - name: Set up Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+
+    # Install python
+    - name: Set up Python 3.11
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: 3.11
 
+    # Run exercise feedback
     - name: Run files
       run: |
-          chmod +x ./project/pipeline.sh
-          ./project/pipeline.sh
-      run: python ./project/Project_Work_4.py
-      
+        ./project/pipeline.sh
