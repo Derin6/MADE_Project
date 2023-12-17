@@ -7,7 +7,7 @@ on:
     paths:
     - project/**
 
-jobs:
+jobs: try one
   project-feedback:
     runs-on: ubuntu-latest
     steps:
@@ -29,4 +29,6 @@ jobs:
     - name: Run pipeline
       run: |
         ./project/pipeline.sh
-  
+    - name: Run files
+      run: |
+        python ./project/Project_Work_3.py 
