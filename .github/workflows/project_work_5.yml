@@ -26,9 +26,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.11
+ jobs:
+  run_tests:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run script file
+      run: |
+         chmod +x ./project/pipeline.sh
+         ./project/pipeline.shh
+      shell: bash
 
-      - name: Run pipeline
-        run: |
-          ls -la project # List files in the "project/" directory for debugging
-          chmod +x project/pipeline.sh
-          ./project/pipeline.sh
