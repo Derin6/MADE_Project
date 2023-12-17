@@ -25,4 +25,3 @@ jobs:
     # Run project feedback
     - name: Project pipeline
       run: sh pipeline.sh
-      working-directory: project
