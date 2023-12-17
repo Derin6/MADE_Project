@@ -9,11 +9,10 @@ jobs:
   project-ci:
     runs-on: ubuntu-latest
     steps:
-
     - name: Set up Node
       uses: actions/setup-node@v3
       with:
-        node-version: 'lts/*'
+        path: main
 
     - name: Set up Python 3.11
       uses: actions/setup-python@v4
@@ -21,4 +20,4 @@ jobs:
         python-version: 3.11
 
     - name: Project pipeline
-      run: python project/Project_Work_4.py
+      run: ./project/pipeline.sh
