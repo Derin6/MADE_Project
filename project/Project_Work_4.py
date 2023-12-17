@@ -9,7 +9,6 @@ import sqlite3
 import urllib.request
 import requests
 from io import BytesIO
-import ssl
 
 
 
