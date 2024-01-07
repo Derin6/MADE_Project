@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[59]:
+# In[1]:
 
 
 import pandas as pd
@@ -15,14 +15,14 @@ import urllib3
 ssl._create_default_https_context = ssl._create_unverified_context
 
 
-# In[60]:
+# In[2]:
 
 
 from pandas.testing import assert_frame_equal
 import example
 
 
-# In[61]:
+# In[3]:
 
 
 class CustomHttpAdapter (requests.adapters.HTTPAdapter):
@@ -46,7 +46,7 @@ def get_legacy_session():
     return session
 
 
-# In[62]:
+# In[4]:
 
 
 def extract(url):
@@ -60,7 +60,7 @@ def extract(url):
     
 
 
-# In[63]:
+# In[5]:
 
 
 def read_excel_1(r):
@@ -77,7 +77,7 @@ def read_excel_2(r):
     
 
 
-# In[64]:
+# In[6]:
 
 
 def transform(df1,df2):
@@ -108,8 +108,30 @@ def transform(df1,df2):
     df2.drop_duplicates(inplace=True)
     df2.reset_index(inplace=True)
     df2.drop(df2.columns[[0,1,3,4,6,8,9,13]], axis=1, inplace=True)
+    df2 = df2.groupby(['Country', 'Indicator'])['VALUE'].sum().reset_index()
     
-    return df1 , df2
+    columns = [ "Country"]
+
+    df1 = df1.merge(df2[columns], on=columns, how="inner")
+    df2 = df2.merge(df1[columns], on=columns, how="inner")
+    
+    df1.drop_duplicates(ignore_index=True,inplace=True)
+    df2.drop_duplicates(ignore_index=True,inplace=True)
+    
+    df3=df2[df2['Indicator'] == "Acts against the environment"]
+    df4=df2[df2['Indicator'] == "Offences"]
+    
+    df3.reset_index(drop=True,inplace=True)
+    df4.reset_index(drop=True,inplace=True)
+    
+    df5 = pd.merge(df1, df3, on='Country', how='inner')
+    df6 = pd.merge(df1, df4, on='Country', how='inner')
+
+
+
+
+    
+    return df5 , df6
 
 
     
@@ -122,7 +144,7 @@ def transform(df1,df2):
     
 
 
-# In[65]:
+# In[7]:
 
 
 url1="https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx"
@@ -135,7 +157,7 @@ df2 = read_excel_2(r2)
 df1,df2 = transform(df1,df2)
 
 
-# In[66]:
+# In[8]:
 
 
 def test_load():
@@ -154,7 +176,7 @@ def test_load():
     
 
 
-# In[67]:
+# In[9]:
 
 
 test_load()
