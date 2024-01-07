@@ -172,7 +172,11 @@ df1,df2 = transform(df1,df2)
 # In[103]:
 
 
-conn = sqlite3.connect('git.sqlite')
+try:
+    conn = sqlite3.connect('git.sqlite')
+except sqlite3.Error as e:
+    print("SQLite Error:", e)
+    
 cursor = conn.cursor()
 
 df_data_types = {
