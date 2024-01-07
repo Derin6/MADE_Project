@@ -172,7 +172,7 @@ df1,df2 = transform(df1,df2)
 # In[103]:
 
 
-conn = sqlite3.connect('made_database.sqlite')
+conn = sqlite3.connect('git.sqlite')
 cursor = conn.cursor()
 
 df_data_types = {
