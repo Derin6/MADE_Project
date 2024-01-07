@@ -152,14 +152,16 @@ df1,df2 = transform(df1,df2)
 
 def test_load():
     conn = sqlite3.connect('made_database.sqlite')
-    result1 = pd.read_sql_query("SELECT * FROM table_1" , conn)
-    result2 = pd.read_sql_query("SELECT * FROM table_2" , conn)
+    result1 = pd.read_sql_query("SELECT * FROM table_1", conn)
+    result2 = pd.read_sql_query("SELECT * FROM table_2", conn)
 
     conn.close()
-    
-    
-    return assert_frame_equal(result1, df1) , assert_frame_equal(result2, df2)
 
+    assert_frame_equal(result1, df1)
+    assert_frame_equal(result2, df2)
+
+# Call the test_load() function to perform the data comparison.
+test_load()
     
     
     
