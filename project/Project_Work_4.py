@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import pandas as pd
 import sqlite3
 import urllib.request
@@ -180,16 +174,3 @@ def test_load():
 
 
 test_load()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
