@@ -5,15 +5,11 @@ import requests
 from io import BytesIO
 import ssl
 import urllib3
+from pandas.testing import assert_frame_equal
+import example
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
-
-# In[2]:
-
-
-from pandas.testing import assert_frame_equal
-import example
 
 
 # In[3]:
