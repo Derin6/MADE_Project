@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[58]:
+# In[1]:
 
 
 import pandas as pd
 import sqlite3
 import urllib.request
-from pandas.testing import assert_frame_equal
+from pandas.testing import assert_frame_Qequal
 import example
 import requests
 from sqlalchemy import create_engine
@@ -18,7 +18,7 @@ import urllib3
 
 
 
-# In[59]:
+# In[2]:
 
 
 class CustomHttpAdapter (requests.adapters.HTTPAdapter):
@@ -42,7 +42,7 @@ def get_legacy_session():
     return session
 
 
-# In[60]:
+# In[3]:
 
 
 def extract(url):
@@ -56,7 +56,7 @@ def extract(url):
     
 
 
-# In[61]:
+# In[4]:
 
 
 def read_excel_1(r):
@@ -73,7 +73,7 @@ def read_excel_2(r):
     
 
 
-# In[62]:
+# In[93]:
 
 
 def transform(df1,df2):
@@ -104,8 +104,30 @@ def transform(df1,df2):
     df2.drop_duplicates(inplace=True)
     df2.reset_index(inplace=True)
     df2.drop(df2.columns[[0,1,3,4,6,8,9,13]], axis=1, inplace=True)
+    df2 = df2.groupby(['Country', 'Indicator'])['VALUE'].sum().reset_index()
     
-    return df1 , df2
+    columns = [ "Country"]
+
+    df1 = df1.merge(df2[columns], on=columns, how="inner")
+    df2 = df2.merge(df1[columns], on=columns, how="inner")
+    
+    df1.drop_duplicates(ignore_index=True,inplace=True)
+    df2.drop_duplicates(ignore_index=True,inplace=True)
+    
+    df3=df2[df2['Indicator'] == "Acts against the environment"]
+    df4=df2[df2['Indicator'] == "Offences"]
+    
+    df3.reset_index(drop=True,inplace=True)
+    df4.reset_index(drop=True,inplace=True)
+    
+    df5 = pd.merge(df1, df3, on='Country', how='inner')
+    df6 = pd.merge(df1, df4, on='Country', how='inner')
+
+
+
+
+    
+    return df5 , df6
 
 
     
@@ -118,58 +140,66 @@ def transform(df1,df2):
     
 
 
-# In[63]:
+# In[94]:
 
 
 url1="https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx"
 url2="https://dataunodc.un.org/sites/dataunodc.un.org/files/data_cts_corruption_and_economic_crime.xlsx"
 
 
-# In[64]:
+# In[95]:
 
 
 r1 = extract(url1)
 r2 = extract(url2)
 
 
-# In[65]:
+# In[96]:
 
 
 df1 = read_excel_1(r1)
 df2 = read_excel_2(r2)
 
 
-# In[66]:
+# In[97]:
 
 
 df1,df2 = transform(df1,df2)
 
 
-# In[67]:
+
+
+# In[103]:
 
 
 conn = sqlite3.connect('made_database.sqlite')
 cursor = conn.cursor()
 
-df1_data_types = {
+df_data_types = {
     'Country': 'BLOB',
     'Human Development Index (HDI)': 'BLOB',
+    'Life expectancy at birth' :'BLOB',
     'Expected years of schooling': 'BLOB',
     'Mean years of schooling': 'BLOB' ,
-    'Gross national income (GNI) per capita': 'BLOB'
+    'Gross national income (GNI) per capita': 'BLOB',
+    'Indicator': 'BLOB',
+    'VALUE': 'BLOB'
+
+
     
     
 }
 
 
-df1.to_sql('table1', conn, if_exists='replace', index=False , dtype=df1_data_types)
-df2.to_sql('table2', conn, if_exists='replace', index=False)
+df1.to_sql('table1', conn, if_exists='replace', index=False , dtype=df_data_types)
+df2.to_sql('table2', conn, if_exists='replace', index=False , dtype=df_data_types)
 
 
 conn.commit()
+conn.close()
 
 
-# In[68]:
+# In[104]:
 
 
 conn = sqlite3.connect('made_database.sqlite')
@@ -182,7 +212,7 @@ print(result)
 conn.close()
 
 
-# In[ ]:
+
 
 
 
