@@ -1,43 +1,40 @@
-# Project Plan
+![image](https://github.com/Derin6/MADE_Project/assets/93079836/0a80a706-50c0-4639-b2dd-4bf8e4bd1925)# Project Plan
 
 ## Main Question
 <!-- Describe your data science project in max. 5 sentences. -->
 
-Is there a correlation between Education level and Economic Freedom and what features of each of them are the root of this. 
+Is there a correlation between Human DEvelopment Index and Crime Rates ( In two type of categories: Offences or Envireonmental Crimes) on Country level ?
 
 ## Description
 <!-- Outline the impact of the analysis, e.g. which pains it solves. -->
 
- Education quality and growing new generations that have a higher cognitive skill are considered as a one of the key features of the success of a country in term of economical computation and freedom in the world. By the help of these two datasets, we can compare their correlation to test the hypothesis and addition to that, we can analyze how this correlation is changed in time since our datasets are measured the performance on both categories for a considerably long period of time.
+ United Nations providing each contry a score from 0 to 1 depend on several factor such as education duration for each citizen and economical parameters. Addition to that, United Nations also collects crime rates for each Country that provides the data publicly accessable for several categories. During this work, it is aimed to compare different crime scores with different factors of development index to be able to see if is there any significant relation that can can be found to investigate deeper. 
 
        
 ## Datasources
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: Economic Freedom Rankings
+### Datasource1: Human Development Report
 * Metadata URL:
-  * https://www.fraserinstitute.org/economic-freedom/dataset?geozone=world&page=dataset&min-year=2&max-year=0&filter=0&year=2021
-  * https://www.fraserinstitute.org/sites/all/modules/custom/ftw_maps_pages/files/efotw-2023-master-index-data-for-researchers-iso.xlsx
+  * https://hdr.undp.org/content/human-development-report-2021-22
 * Data URL:
-  * https://github.com/Derin6/MADE_Project/blob/77927c42c204107353521835a03242dcc45f1f66/project/efotw-2023-master-index-data-for-researchers-iso.xlsx
+  *https://github.com/Derin6/MADE_Project/blob/77927c42c204107353521835a03242dcc45f1f66/project/efotw-2023-master-index-data-for-researchers-iso.xlsx](https://hdr.undp.org/sites/default/files/2021-22_HDR/HDR21-22_Statistical_Annex_HDI_Table.xlsx
 * Data Format: xlsx
 
-Dataset includes entire economic freedom dataset, including sub-indicators from 1975 to 2021 for every country that included into the research.
+Dataset includes entire uman Development Index  dataset, including sub-indicators from 2021 to 2021 for every country that included into the research. Data Fetaures are listed below:
+"Human Development Index (HDI) ,		Life expectancy at birth	,	Expected years of schooling	,	Mean years of schooling	,	Gross national income (GNI) per capita	,	GNI per capita rank minus HDI rank	,	HDI rank"
 
-### Datasource2: Educational level score 
+
+### Datasource2: Corruption & Economic Crime 
 * Metadata URL: 
-    * [https://pisadataexplorer.oecd.org/ide/idepisa/dataset.aspx](https://pisadataexplorer.oecd.org/ide/idepisa/report.aspx?p=1-RMS-1-20183,20153,20123,20093,20063,20033,20003-PVREAD-TOTAL-IN2,IN3,AUS,AUT,BEL,CAN,CHL,COL,CZE,DNK,EST,FIN,FRA,DEU,GRC,HUN,ISL,IRL,ISR,ITA,JPN,KOR,LVA,LTU,LUX,MEX,NLD,NZL,NOR,POL,PRT,SVK,SVN,ESP,SWE,CHE,TUR,GBR,USA-MN_MN-Y_J-0-0-37&Lang=1033)
+    * https://dataunodc.un.org/dp-crime-corruption-offences
 * Data URL:
-    * https://github.com/Derin6/MADE_Project/blob/3aa007de9525d8b66d9c9e18de2f688e7ab8bd75/project/IDEExcelExport-Nov032023-0513PM.xls
-* Data Format: xls
+    * https://dataunodc.un.org/sites/dataunodc.un.org/files/data_cts_corruption_and_economic_crime.xlsx
+* Data Format: xlsx
 
 
-Subject, Age: Reading, Mathematics and Science, 15 years
-Jurisdictions: Selected countries and jurisdictions, International Average (OECD), Australia, Austria, Belgium, Canada, Chile, Colombia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Ireland, Israel, Italy, Japan, Korea, Latvia, Lithuania, Luxembourg, Mexico, Netherlands, New Zealand, Norway, Poland, Portugal, Slovak Republic, Slovenia, Spain, Sweden, Switzerland, Turkey, United Kingdom, United States
-Measures: PISA Reading Scale: Overall Reading, PISA Mathematics Scale: Overall Mathematics, PISA Science Scale: Overall Science
-Variables: All students, Student (Standardized) Gender
-Years/Studies: 2018, 2015, 2012, 2009, 2006, 2003, 2000
-
+Dataset includes Crime rates in each country for several sıb categories from 2003 to 2021 with two measurement option: Counts or rate per 100,000 population.  Data Fetaures are listed below:
+"Iso3_code, Country,	Region,	Subregion,	Indicator,	Dimension,	Category,	Sex,	Age,	Year,	Unit of measurement,	VALUE,	Source"
 
 
 ## Work Packages
