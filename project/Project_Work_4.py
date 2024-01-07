@@ -151,7 +151,7 @@ df1,df2 = transform(df1,df2)
 
 
 def test_load():
-    conn = sqlite3.connect('made_database.sqlite')
+    conn = sqlite3.connect('git.sqlite')
     result1 = pd.read_sql_query("SELECT * FROM table_1", conn)
     result2 = pd.read_sql_query("SELECT * FROM table_2", conn)
 
