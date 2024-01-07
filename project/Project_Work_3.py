@@ -7,7 +7,7 @@
 import pandas as pd
 import sqlite3
 import urllib.request
-from pandas.testing import assert_frame_Qequal
+from pandas.testing import assert_frame_equal
 import example
 import requests
 from sqlalchemy import create_engine
