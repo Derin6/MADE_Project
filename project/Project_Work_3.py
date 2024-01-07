@@ -191,8 +191,8 @@ df_data_types = {
 }
 
 
-df1.to_sql('table1', conn, if_exists='replace', index=False , dtype=df_data_types)
-df2.to_sql('table2', conn, if_exists='replace', index=False , dtype=df_data_types)
+df1.to_sql('table_1', conn, if_exists='replace', index=False , dtype=df_data_types)
+df2.to_sql('table_2', conn, if_exists='replace', index=False , dtype=df_data_types)
 
 
 conn.commit()
