@@ -199,18 +199,6 @@ conn.commit()
 conn.close()
 
 
-# In[104]:
-
-
-conn = sqlite3.connect('made_database.sqlite')
-cursor = conn.cursor()
-table1="table1"
-
-query = f'SELECT * FROM {table1}'
-result = pd.read_sql_query(query, conn)
-print(result)
-conn.close()
-
 
 
 
