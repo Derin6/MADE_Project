@@ -1,4 +1,4 @@
-![image](https://github.com/Derin6/MADE_Project/assets/93079836/0a80a706-50c0-4639-b2dd-4bf8e4bd1925)# Project Plan
+# Project Plan
 
 ## Main Question
 <!-- Describe your data science project in max. 5 sentences. -->
@@ -33,7 +33,7 @@ Dataset includes entire uman Development Index  dataset, including sub-indicator
 * Data Format: xlsx
 
 
-Dataset includes Crime rates in each country for several sıb categories from 2003 to 2021 with two measurement option: Counts or rate per 100,000 population.  Data Fetaures are listed below:
+Dataset includes Crime rates in each country for several sub-categories from 2003 to 2021 with two measurement option: Counts or rate per 100,000 population.  Data Fetaures are listed below:
 "Iso3_code, Country,	Region,	Subregion,	Indicator,	Dimension,	Category,	Sex,	Age,	Year,	Unit of measurement,	VALUE,	Source"
 
 
