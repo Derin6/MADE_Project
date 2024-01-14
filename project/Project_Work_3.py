@@ -20,6 +20,7 @@ import urllib3
 
 # In[2]:
 
+#To be able to hande  HTTP request , CustomHttpAdapter is used 
 
 class CustomHttpAdapter (requests.adapters.HTTPAdapter):
     # "Transport adapter" that allows us to use custom ssl_context.
@@ -44,6 +45,7 @@ def get_legacy_session():
 
 # In[3]:
 
+#This function is used to extract the information from the url that will be provided by the user.
 
 def extract(url):
     header = {
@@ -58,6 +60,7 @@ def extract(url):
 
 # In[4]:
 
+#Reads and upload the files from extracted url context to dataframes and also substract several unneeded rows from dataframes.
 
 def read_excel_1(r):
     content = r.content
@@ -75,7 +78,7 @@ def read_excel_2(r):
 
 # In[93]:
 
-
+#Transforms dataframe into the need form. Details can be found in report file data modification section.
 def transform(df1,df2):
     df1.drop(df1.columns[[0,3,5,7,9,11,12,13]], axis=1, inplace=True)
     df1=df1.rename(columns={"Unnamed: 1":"Country"})
@@ -170,7 +173,7 @@ df1,df2 = transform(df1,df2)
 
 
 # In[103]:
-
+#Upload the dataframs to the Made_Project.sqlite
 
 conn = sqlite3.connect('Made_Project.sqlite')
     
