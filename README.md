@@ -6,8 +6,8 @@
 * In this study, we are questioning whether there is a correlation between the Human Development Index (HDI) and crime rates (in two types of categories: Offenses or Environmental Crimes) at the country level.
 
 * In the link below you can find the datapipeline which is used to load the data from the internet, proccesses it and stores it to a database:
-** https://github.com/Derin6/MADE_Project/blob/main/project/Project_Work_3.py
+  * https://github.com/Derin6/MADE_Project/blob/main/project/Project_Work_3.py
 
 
 * In the project folder you find all additional informations about the project, like what datasources where used. The final report about the findings from the processed data you can see in the report.ipynb:
-** https://github.com/Derin6/project/report.ipynb
+  * https://github.com/Derin6/project/report.ipynb
