@@ -12,6 +12,6 @@
 * In the project folder you find all more informations regarding the project, such as  datasources whicha are used. The final report about the findings from the processed data you can see in the report.ipynb:
   * https://github.com/Derin6/project/report.ipynb
  
-##Context
+## Context
 
-*This repository contains my project from FAU's "Advanced Methods of Software Engineering" course, where I developed a Data Engineering Project. It involved using an automated pipeline to process data from two public sources and extract insights. In the exercise folder, you could access to the files regarding the exercises during the course.
+* This repository contains my project from FAU's "Advanced Methods of Software Engineering" course, where I developed a Data Engineering Project. It involved using an automated pipeline to process data from two public sources and extract insights. In the exercise folder, you could access to the files regarding the exercises during the course.
