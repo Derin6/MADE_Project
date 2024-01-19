@@ -134,7 +134,7 @@ df_data_types = {
     'Geraet': 'BIGINT',
     'Hersteller': 'TEXT ',
     'Model' :'TEXT ',
-    'Monat': 'FLOAT',
+    'Monat': 'BIGINT',
     'Temperatur': 'FLOAT' ,
     'Batterietemperatur': 'FLOAT',
     'Geraet aktiv': 'TEXT ',
