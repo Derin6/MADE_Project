@@ -6,10 +6,8 @@
 
 import pandas as pd
 import sqlite3
-import urllib.request
 import requests
 import io 
-import urllib3
 import zipfile
 
 
@@ -136,7 +134,7 @@ df_data_types = {
     'Geraet': 'BIGINT',
     'Hersteller': 'TEXT ',
     'Model' :'TEXT ',
-    'Monat': 'BIGINT',
+    'Monat': 'FLOAT',
     'Temperatur': 'FLOAT' ,
     'Batterietemperatur': 'FLOAT',
     'Geraet aktiv': 'TEXT ',
@@ -152,15 +150,6 @@ df3.to_sql('temperatures', conn, if_exists='replace', index=False , dtype=df_dat
 
 conn.commit()
 conn.close()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
 
 
 
