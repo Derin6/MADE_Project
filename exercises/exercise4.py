@@ -5,7 +5,7 @@
 
 
 import pandas as pd
-import sqlite3
+import sqlalchemy
 import urllib.request
 import requests
 import io 
@@ -147,8 +147,7 @@ df3.info()
 # In[166]:
 
 
-conn = sqlite3.connect('temperatures.sqlite')
-cursor = conn.cursor()
+conn = sqlalchemy.create_engine('sqlite:///temperatures.sqlite')
 
 df_data_types = {
     'Geraet': 'BIGINT',
@@ -165,9 +164,7 @@ df_data_types = {
 }
 
 
-df3.to_sql('temperatures', conn, if_exists='replace', index=False , dtype=df_data_types)
+df3.to_sql('temperatures', con=conn, if_exists='replace', index=False , dtype=df_data_types)
 
-
-conn.commit()
-conn.close()
+conn.dispose()
 
