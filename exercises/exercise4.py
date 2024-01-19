@@ -35,8 +35,9 @@ url = "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip"
 
 
 zip_file = extract(url)
-z = zipfile.ZipFile(io.BytesIO(zip_file.content))
+z = zipfile.ZipFile(io.BytesIO(zip_file.read())) 
 z.extract("data.csv")
+
 
 df = pd.read_csv("data.csv", sep=";",on_bad_lines='skip')
 column_names = df.columns.values.tolist()
@@ -158,7 +159,3 @@ conn.close()
 
 
 # In[ ]:
-
-
-
-
