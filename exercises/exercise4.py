@@ -118,7 +118,7 @@ df3.info()
 # In[166]:
 
 
-conn = sqlalchemy.create_engine('sqlite:///temperatures.sqlite')
+conn = sqlalchemy.create_engine('temperatures.sqlite')
 
 df_data_types = {
     'Geraet': 'BIGINT',
