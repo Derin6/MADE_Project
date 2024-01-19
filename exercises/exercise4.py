@@ -6,7 +6,7 @@
 
 import pandas as pd
 import sqlite3
-import requests
+from urllib.request import urlopen
 import io 
 import zipfile
 
@@ -20,7 +20,7 @@ def extract(url):
         
   "X-Requested-With": "XMLHttpRequest"
 }
-    r = requests.get(url, headers=header)
+    r = urlopen(url)
     return r
     
 
