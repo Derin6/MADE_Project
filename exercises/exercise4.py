@@ -6,20 +6,20 @@
 
 import pandas as pd
 import sqlalchemy
-import requests
-import io 
+from urllib.request import urlopen
+import io
 import zipfile
 
 
 
 def extract(url):
     header = {
-  "User-Agent": 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0',
-        
-  "X-Requested-With": "XMLHttpRequest"
-}
-    r = requests.get(url, headers=header)
-    return r
+        "User-Agent": 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:41.0) Gecko/20100101 Firefox/41.0',
+        "X-Requested-With": "XMLHttpRequest"
+    }
+    request = urlopen(url)
+    return request.read()
+
     
     
 
@@ -33,10 +33,11 @@ url = "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip"
 # In[135]:
 
 
-zip_file = extract(url)
-z = zipfile.ZipFile(io.BytesIO(zip_file.content))
+zip_content = extract(url)
+z = zipfile.ZipFile(io.BytesIO(zip_content))
 z.extract("data.csv")
-df = pd.read_csv("data.csv", sep=";",on_bad_lines='skip')
+df = pd.read_csv("data.csv", sep=";", on_bad_lines='skip')
+
 
 
 # In[136]:
@@ -137,4 +138,3 @@ df_data_types = {
 df3.to_sql('temperatures', con=conn, if_exists='replace', index=False , dtype=df_data_types)
 
 conn.dispose()
-
