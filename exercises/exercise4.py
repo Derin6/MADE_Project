@@ -42,9 +42,9 @@ z.extract("data.csv")
 df = pd.read_csv("data.csv", sep=";",on_bad_lines='skip')
 column_names = df.columns.values.tolist()
 
-df = pd.read_csv('data.csv', sep='\t', header=None, names=['raw'], on_bad_lines='skip',skiprows=1)
-df_split = df['raw'].str.split(';', expand=True,)
-df= df_split.iloc[:,0:16]
+df_single_file = pd.read_csv('data.csv', sep='\t', header=None, names=['single_file'], on_bad_lines='skip',skiprows=1)
+df_seperated_columns = df_single_file['single_file'].str.split(';', expand=True,)
+df= df_seperated_columns.iloc[:,0:16]
 expected_cols = 15  # change this to your actual number of columns
 df.columns = column_names
 
