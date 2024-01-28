@@ -29,8 +29,8 @@ pipeline Homework5 {
         columns:[
             "stop_id" oftype integer, 
             "stop_name" oftype text,
-            "stop_lat" oftype geographiccoordinates,
-            "stop_lon" oftype geographiccoordinates,
+            "stop_lat" oftype cords,
+            "stop_lon" oftype cords,
             "zone_id " oftype limitedidentifier,
     
             
@@ -38,7 +38,7 @@ pipeline Homework5 {
     }
     
     
-    valuetype geographiccoordinates oftype decimal {
+    valuetype cords oftype decimal {
         constraints: [Bound1];
     }
     
