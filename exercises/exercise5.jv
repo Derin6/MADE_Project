@@ -10,7 +10,7 @@ pipeline Homework5 {
         -> GTFSLoader;
     
     block GTFSSampleFeedExtractor oftype HttpExtractor {
-        url: " https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+        url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
     }
 
     block ZipArchiveInterpreter oftype ArchiveInterpreter {
