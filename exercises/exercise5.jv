@@ -38,7 +38,7 @@ pipeline Homework5 {
     }
     
     
-    valuetype geographiccoordinates oftype float {
+    valuetype geographiccoordinates oftype decimal {
         constraints: [Bound1];
     }
     
