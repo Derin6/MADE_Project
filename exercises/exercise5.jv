@@ -7,6 +7,7 @@ pipeline Homework5 {
         -> GTFSTextFileInterpreter
         -> GTFSCSVInterpreter
         -> GTFSTableInterpreter
+        -> GTFSTableRangeTransformer
         -> GTFSLoader;
     
     block GTFSSampleFeedExtractor oftype HttpExtractor {
@@ -30,13 +31,43 @@ pipeline Homework5 {
         columns:[
             "stop_id" oftype integer, 
             "stop_name" oftype text,
-            "stop_lat" oftype decimal,
-            "stop_lon" oftype decimal,
-            "zone_id " oftype integer
+            "stop_lat" oftype geographiccoordinates,
+            "stop_lon" oftype geographiccoordinates,
+            "zone_id " oftype limitedidentifier
     
             
         ];
     }
+    
+    block ElectricRangeTransformer oftype TableTransformer {
+        inputColumns: ["Electric Range"];
+        outputColumn: "Electric Range (km)";
+        use: MilesToKilometers;
+    }
+    
+    
+    valuetype geographiccoordinates oftype float {
+        constraints: [Bound];
+    }
+    
+    valuetype limitedidentifier oftype integer {
+        constraints: [listofids];
+    }
+    
+    constraint Bound oftype RangeConstraint {
+        lowerBound: -90;
+        lowerBoundInclusive: True;
+        upperBound: 90;
+        upperBoundInclusive: True;
+    }
+    
+    constraint listofids oftype AllowlistConstraint {
+        allowlist: [2001];
+    }
+    
+    
+    
+    
     
     block GTFSLoader oftype SQLiteLoader {
         table: "stops";
