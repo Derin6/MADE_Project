@@ -1,13 +1,11 @@
 pipeline Homework5 {
     
-    GTFSSampleFeedExtractor -> ZipArchiveInterpreter;
-    
-    ZipArchiveInterpreter
+    GTFSSampleFeedExtractor
+        -> ZipArchiveInterpreter
         -> GTFSFilePicker
         -> GTFSTextFileInterpreter
         -> GTFSCSVInterpreter
         -> GTFSTableInterpreter
-        -> GTFSTableRangeTransformer
         -> GTFSLoader;
     
     block GTFSSampleFeedExtractor oftype HttpExtractor {
@@ -39,30 +37,27 @@ pipeline Homework5 {
         ];
     }
     
-    block ElectricRangeTransformer oftype TableTransformer {
-        inputColumns: ["Electric Range"];
-        outputColumn: "Electric Range (km)";
-        use: MilesToKilometers;
-    }
-    
     
     valuetype geographiccoordinates oftype float {
-        constraints: [Bound];
+        constraints: [Bound1];
     }
     
     valuetype limitedidentifier oftype integer {
-        constraints: [listofids];
+        constraints: [Bound2];
     }
     
-    constraint Bound oftype RangeConstraint {
+    constraint Bound1 oftype RangeConstraint {
         lowerBound: -90;
-        lowerBoundInclusive: True;
+        lowerBoundInclusive: true;
         upperBound: 90;
-        upperBoundInclusive: True;
+        upperBoundInclusive: true;
     }
     
-    constraint listofids oftype AllowlistConstraint {
-        allowlist: [2001];
+    constraint Bound2 oftype RangeConstraint {
+        lowerBound: 2001;
+        lowerBoundInclusive: true;
+        upperBound: 2001;
+        upperBoundInclusive: true;
     }
     
     
