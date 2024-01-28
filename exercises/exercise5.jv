@@ -71,7 +71,7 @@ pipeline Homework5 {
     
     block GTFSLoader oftype SQLiteLoader {
         table: "stops";
-        file: "./gtfs.sqlite";
+        file: "gtfs.sqlite";
     }
     
     
