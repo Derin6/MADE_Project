@@ -33,7 +33,7 @@ pipeline Homework5 {
             "stop_name" oftype text,
             "stop_lat" oftype geographiccoordinates,
             "stop_lon" oftype geographiccoordinates,
-            "zone_id " oftype limitedidentifier
+            "zone_id " oftype limitedidentifier,
     
             
         ];
