@@ -24,6 +24,8 @@ pipeline Homework5 {
     
     block GTFSCSVInterpreter oftype CSVInterpreter { 
         delimiter: ";";
+        enclosing: '"';
+
     }
     
     block GTFSTableInterpreter oftype TableInterpreter {
