@@ -30,7 +30,7 @@ pipeline Homework5 {
             "stop_name" oftype text,
             "stop_lat" oftype cords,
             "stop_lon" oftype cords,
-            "zone_id " oftype limitedidentifier,
+            "zone_id" oftype limitedidentifier,
     
             
         ];
