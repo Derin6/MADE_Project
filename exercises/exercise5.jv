@@ -1,12 +1,6 @@
 pipeline Homework5 {
     
-    GTFSSampleFeedExtractor
-        -> ZipArchiveInterpreter
-        -> GTFSFilePicker
-        -> GTFSTextFileInterpreter
-        -> GTFSCSVInterpreter
-        -> GTFSTableInterpreter
-        -> GTFSLoader;
+    
     
     block GTFSSampleFeedExtractor oftype HttpExtractor {
         url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
@@ -20,12 +14,13 @@ pipeline Homework5 {
         path: "/stops.txt";
     }
     
-    block GTFSTextFileInterpreter oftype TextFileInterpreter { }
+    block GTFSTextFileInterpreter oftype TextFileInterpreter {
+      
+    }
     
-    block GTFSCSVInterpreter oftype CSVInterpreter { 
-        delimiter: ";";
+    block GTFSCSVInterpreter oftype oftype CSVInterpreter {
+        delimiter: ",";
         enclosing: '"';
-
     }
     
     block GTFSTableInterpreter oftype TableInterpreter {
@@ -72,5 +67,13 @@ pipeline Homework5 {
         table: "stops";
         file: "./gtfs.sqlite";
     }
+
+    GTFSSampleFeedExtractor
+        -> ZipArchiveInterpreter
+        -> GTFSFilePicker
+        -> GTFSTextFileInterpreter
+        -> GTFSCSVInterpreter
+        -> GTFSTableInterpreter
+        -> GTFSLoader;
     
 }
