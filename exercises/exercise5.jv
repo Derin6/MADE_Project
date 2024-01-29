@@ -22,7 +22,9 @@ pipeline Homework5 {
     
     block GTFSTextFileInterpreter oftype TextFileInterpreter { }
     
-    block GTFSCSVInterpreter oftype CSVInterpreter { }
+    block GTFSCSVInterpreter oftype CSVInterpreter { 
+        delimiter: ";";
+    }
     
     block GTFSTableInterpreter oftype TableInterpreter {
         header: true;
